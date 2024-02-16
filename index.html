@@ -90,6 +90,7 @@ input[type="button"]:active {
             <span id="minute">00</span>
             <span>:</span>
             <span id="seconds">00</span>
+            <span id="AMPM"> AM</span>
         </div>
         </div>
        
@@ -133,11 +134,16 @@ input[type="button"]:active {
          const hour=document.getElementById("hour");
         const min=document.getElementById("minute");
         const sec=document.getElementById("seconds");
+        const AMPM=document.getElementById("AMPM");
         const date=document.getElementById("date");
         function clock(){
             const newdate=new Date();
-            console.log(newdate);
+            
             hour.innerHTML=newdate.getHours();
+            if(hour>12){
+                hour.innerHTML=newdate.getHours()-12;  
+                AMPM.innerHTML="PM";
+            }
             min.innerHTML=newdate.getMinutes();
             sec.innerHTML=newdate.getSeconds();
 

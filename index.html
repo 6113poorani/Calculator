@@ -15,10 +15,11 @@
     width: 350px;
     margin: 100px auto;
     margin-top: 60px;
-    border: 2px solid#ccc;
+    border:2px solid black;
     border-radius: 10px;
     padding: 20px;
     background-color: #ccc;
+    box-shadow:2px 2px 5px black ;
    
 }
 
@@ -56,20 +57,46 @@ input[type="button"]:active {
 #equal {
     width: 150px;
 }
-
-
-
+.clock {
+    position: fixed;
+    top: 20px; 
+    right: 20px; 
+    background-color:#ccc;
+    height:50px;
+    width: 150px;
+    border-radius: 5px;
+    border:2px solid black;
+    box-shadow:2px 3px 2px black ;
+   
+}
+.date{
+    margin-left:20px;
+    font-size: 20px;
+    text-shadow: 2px 2px 5px #555;
+}
 
 
         </style>
     </head>
     <body>
         <h1>CALCULATOR</h1>
+        <div class="clock">
+            <div class="date">
+           
+            <span id="date"></span><br>
+           
+            <span id="hour">00</span>
+            <span>:</span>
+            <span id="minute">00</span>
+            <span>:</span>
+            <span id="seconds">00</span>
+        </div>
+        </div>
        
         <div class="calc">
         <form id="forms">
         <div>
-            <input type="text" id="val" name="display" value="">
+            <input type="text"  id="display" >
         </div>
         <div>
             <input type="button" value="AC" onclick="display.value=''">
@@ -103,10 +130,33 @@ input[type="button"]:active {
     </form>
 </div>
     <script>
+         const hour=document.getElementById("hour");
+        const min=document.getElementById("minute");
+        const sec=document.getElementById("seconds");
+        const date=document.getElementById("date");
+        function clock(){
+            const newdate=new Date();
+            console.log(newdate);
+            hour.innerHTML=newdate.getHours();
+            min.innerHTML=newdate.getMinutes();
+            sec.innerHTML=newdate.getSeconds();
+
+            const year = newdate.getFullYear();
+            const month = newdate.getMonth() + 1; 
+            const day = newdate.getDate();
+            date.innerHTML=`${day} / ${month} / ${year}`;
+        }
+    setInterval(clock,1000);
+       
+
+
         const forms=document.getElementById("forms");
-        
+        const val=document.getElementById("display");
         forms.addEventListener("click", function(event){
   event.preventDefault();
+  
+  val.value=val.value;
+
   
   
   
